@@ -19,3 +19,15 @@ resource "random_id" "server" {
 
   byte_length = 8
 }
+
+resource "random_password" "create_password” {
+  length = 10
+  upper  = true
+  lower  = true
+  special          = true
+  override_special = "!#&-_+?"
+  keepers = { 
+     time = time_rotating.example.id 
+  }
+}
+
