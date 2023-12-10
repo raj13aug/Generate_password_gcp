@@ -8,16 +8,7 @@ terraform {
 }
 
 resource "time_rotating" "example" {
-  rotation_days = 1
-}
-
-resource "random_id" "server" {
-  keepers = {
-    # Generate a new password each time time rotates
-    rotation_time = time_rotating.example.rotation_rfc3339
-  }
-
-  byte_length = 8
+  rotation_days = 5
 }
 
 resource "random_password" "create-password" {
@@ -29,5 +20,11 @@ resource "random_password" "create-password" {
   keepers = {
     time = time_rotating.example.id
   }
+}
+
+
+output "random_password" {
+  value     = random_password.create-password.result
+  sensitive = true
 }
 
