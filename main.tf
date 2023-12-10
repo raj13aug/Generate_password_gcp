@@ -7,7 +7,7 @@ terraform {
   }
 }
 
-resource "time_rotating" "example" {
+resource "time_rotating" "period" {
   rotation_days = 5
 }
 
@@ -18,7 +18,7 @@ resource "random_password" "create-password" {
   special          = true
   override_special = "!#&-_+?"
   keepers = {
-    time = time_rotating.example.id
+    time = time_rotating.period.id
   }
 }
 
