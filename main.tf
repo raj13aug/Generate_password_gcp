@@ -22,7 +22,6 @@ resource "random_password" "create-password" {
   }
 }
 
-
 output "random_password" {
   value     = random_password.create-password.result
   sensitive = true
